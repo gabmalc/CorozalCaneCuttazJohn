@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Particles Test</title>
+    <style>
+      .background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background-color: rgba(0, 0, 0, 0.1); /* Temporary background color */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <label>Username</label>
+      <input type="text" name="username" required />
+      <label>Password</label>
+      <input type="password" name="password" required />
+      <input style="margin-top: 1vw" type="submit" value="Login" />
+      <p>Don't have an account yet?</p>
+      <a href="signup.php">Sign up now</a>
+      <div style="margin-top: 1vw" class="col-md-5 text-center">
+        <img
+          src="C:\xampp\htdocs\ccc\assets\BHS.png"
+          class="img-fluid"
+          alt="bhs logo"
+        />
+      </div>
+    </div>
+    <h1>Particles Background Test</h1>
+    <canvas class="background"></canvas>
+    <!-- Include Particles.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+    <!-- Initialize Particles.js -->
+    <script>
+      window.onload = function () {
+        Particles.init({
+          selector: ".background",
+          color: ["#DA0463", "#404B69", "#DBEDF3"],
+          connectParticles: true,
+        });
+      };
+    </script>
+  </body>
+</html>
