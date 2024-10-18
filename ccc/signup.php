@@ -8,17 +8,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    // Check if the username already exists
+    $stmt = $conn->prepare("SELECT id FROM user_info WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
 
-    // Prepare and execute the insert statement
-    $stmt = $conn->prepare("INSERT INTO user_info (email, username, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $email, $username, $hashed_password);
-    
-    if ($stmt->execute()) {
-        header("Location: login.php");
+    if ($stmt->num_rows > 0) {
+        // Username already exists, show an error message
+        $signup_err = "Username already taken. Please choose a different one.";
     } else {
-        echo "Error: " . $stmt->error;
+        // Hash the password and insert the new user
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $conn->prepare("INSERT INTO user_info (email, username, password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $email, $username, $hashed_password);
+
+        if ($stmt->execute()) {
+            header("Location: login.php");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
     }
 
     $stmt->close();
@@ -37,7 +48,7 @@ $conn->close();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body style="background-color: #000000">
 <canvas class="background"></canvas>
@@ -49,8 +60,8 @@ $conn->close();
                 <div class="login-form">
                 <h2 style="color: black;">Sign up</h2>
                 <?php 
-                if (!empty($login_err)) {
-                    echo '<div style="color: red;">' . htmlspecialchars($login_err) . '</div>';
+                if (!empty($signup_err)) {
+                    echo '<div style="color: red;">' . htmlspecialchars($signup_err) . '</div>';
                 }        
                 ?>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -62,9 +73,9 @@ $conn->close();
                         <label>Password</label>
                         <input type="password" name="password" required>
                         <input style="margin-top: 1vw" type="submit" value="Sign up">
-                        <p style="">Already have an account? </p><a href="login.php">Login now</a>
+                        <p>Already have an account? <a href="login.php">Login now</a></p>
                         <div style="margin-top: 1vw" class="col-md-5 text-center">
-                            <img src="assets\bhs.png" class="img-fluid" alt="bhs logo">
+                            <img src="assets/bhs.png" class="img-fluid" alt="bhs logo">
                         </div>       
                     </div>
                 </form>
@@ -84,4 +95,5 @@ $conn->close();
     </script>
 </body>
 </html>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

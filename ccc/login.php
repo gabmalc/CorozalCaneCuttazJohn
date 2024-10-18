@@ -3,7 +3,7 @@ session_start();
 
 // Include the database connection
 include 'connection.php';
-
+$_SESSION["loggedin"] = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
+   
 }
 $conn->close();
 ?>
