@@ -15,7 +15,7 @@ body {
 
 .sidebar {
   position: fixed;
-  top: 0;
+  top: -1;
   left: 0;
   height: 100%;
   width: 85px;
@@ -42,7 +42,7 @@ body {
 }
 
 .sidebar .sidebar-header h2 {
-  color: #fff;
+  color: #FFD700;
   font-size: 1.25rem;
   font-weight: 600;
   white-space: nowrap;
@@ -50,7 +50,7 @@ body {
 }
 
 .sidebar-links h4 {
-  color: #fff;
+  color: #FFD700;
   font-weight: 500;
   white-space: nowrap;
   margin: 10px 0;
@@ -73,7 +73,7 @@ body {
   height: 1px;
   transform: scaleX(1);
   transform: translateY(-50%);
-  background: #4f52ba;
+  background: #FFD700;
   transform-origin: right;
   transition-delay: 0.2s;
 }

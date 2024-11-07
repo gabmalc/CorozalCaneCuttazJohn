@@ -22,14 +22,14 @@ include 'connection.php';
 </head>
 <body>
   <div class="container">
-    <h2>Cane Cuttaz Management System</h2>
+    <h2 align="left">Cane Cuttaz Management System</h2>
     <h5>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?></h5>
-    <ul class="nav nav-pills">
-      <li class="active"><a data-toggle="pill" href="#home">Grades</a></li>
-      <li><a data-toggle="pill" href="#menu1">GPA Calculator</a></li>
-      <li><a data-toggle="pill" href="#menu2">Experiential Log</a></li>
-      <li><a data-toggle="pill" href="#menu3">Announcements</a></li>
-      <li><a data-toggle="pill" href="#menu4">Calendar</a></li>
+    <ul class="nav nav-pills nav-justified">
+      <li class="active"><a href="grades.php">Grades</a></li>
+      <li><a data-toggle="pill" href="calc.php">GPA Calculator</a></li>
+      <li><a data-toggle="pill" href="experiential-log.php">Experiential Log</a></li>
+      <li><a data-toggle="pill" href="announcements.php">Announcements</a></li>
+      <li><a data-toggle="pill" href="calendar.php">Calendar</a></li>
       <li><a href="login.php">Logout</a></li>
     </ul>
   </div>
@@ -58,6 +58,14 @@ include 'connection.php';
       <p>Some content in menu 4.</p>
     </div>
   </div>
+  <iframe src="grades.php" <iframe style="
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    position: fixed;
+    top: -1;
+    left: 0;
+  "></iframe></iframe>
 
   <script src="scripts/script.js"></script>
 </body>
