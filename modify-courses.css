@@ -1,0 +1,144 @@
+css
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+table {
+    margin: auto auto;
+    margin-bottom: 100px;
+    width: 90%;
+    max-width: 70vw;
+
+}
+
+#addCourseForm {
+    margin: 0 auto;
+    max-width: 500px;
+    text-align: center;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    max-width: 300px;
+    margin: 5px auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+table {
+    margin: auto auto;
+    margin-bottom: 100px;
+    width: 90%;
+    max-width: 70vw;
+    border-collapse: collapse;
+}
+
+/* Add these new styles for table cells */
+table td {
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+table th {
+    padding: 10px;
+    text-align: center;
+    background-color: #161a2d;
+    color: #fff;
+}
+
+/* Style for editable spans */
+.editable {
+    display: inline-block;
+    min-width: 100px;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.editable:hover {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+/* Style for input fields when editing */
+.editing input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Specific column widths */
+table td:nth-child(1) { /* ID column */
+    width: 10%;
+    border: #FFD700 1px solid;
+}
+
+table td:nth-child(2) { /* Course Name column */
+    width: 35%;
+    border: #FFD700 1px solid;
+}
+
+table td:nth-child(3) { /* Credits column */
+    width: 15%;
+    border: #FFD700 1px solid;
+}
+
+table td:nth-child(4) { /* Instructor column */
+    width: 25%;
+    border: #FFD700 1px solid;
+}
+
+table td:nth-child(5) { /* Actions column */
+    width: 15%;
+    border: #FFD700 1px solid;
+}
+
+#addCourseForm {
+    margin: 0 auto;
+    max-width: 500px;
+    text-align: center;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    max-width: 300px;
+    margin: 5px auto;
+}
+
+/* Style for the delete button */
+.delete-btn {
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
