@@ -245,45 +245,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_assignment'])) 
     <div class="course-header">
     <h2>
         <?php 
-        if (isset($_GET['course_id'])) {
+        if (isset($_GET['course_id']) && $_GET['course_id'] != ''): 
             $course_query = "SELECT course_name FROM courses WHERE course_id = ?";
             $stmt = $conn->prepare($course_query);
             $stmt->bind_param("i", $_GET['course_id']);
             $stmt->execute();
             $course_name = $stmt->get_result()->fetch_assoc()['course_name'];
             echo htmlspecialchars(strtoupper($course_name)) . ", Sem: 1";
-        } else {
+        else:
             echo "NO COURSE SELECTED";
-        }
+        endif;
         ?>
     </h2>
     <div>Course Average: 
         <?php 
-        if (isset($_GET['course_id'])) {
+        if (isset($_GET['course_id']) && $_GET['course_id'] != ''): 
             echo $course_average . '%';
-        } else {
-            echo "No course selected";
-        }
+        else:
+            echo "N/A";
+        endif;
         ?>
     </div>
 </div>
 
         <!-- Course Selection -->
         <form method="get" id="courseForm">
-            <select name="course_id" onchange="this.form.submit()">
-                <option value="">Select Course</option>
-                <?php while ($course = $courses_result->fetch_assoc()): ?>
-                    <option value="<?php echo $course['course_id']; ?>"
-                        <?php echo (isset($_GET['course_id']) && $_GET['course_id'] == $course['course_id']) ? 'selected' : ''; ?>>
-                        <?php echo htmlspecialchars($course['course_name']); ?>
-                    </option>
-                <?php endwhile; ?>
+    <select name="course_id" onchange="this.form.submit()">
+        <option value="">Select Course</option>
+        <?php while ($course = $courses_result->fetch_assoc()): ?>
+            <option value="<?php echo $course['course_id']; ?>"
+                <?php echo (isset($_GET['course_id']) && $_GET['course_id'] == $course['course_id']) ? 'selected' : ''; ?>>
+                <?php echo htmlspecialchars($course['course_name']); ?>
+            </option>
+        <?php endwhile; ?>
+    </select>
+</form>
 
-            
-            </select>
-        </form>
-
-        <?php if (isset($_GET['course_id'])): ?>
+        <?php if (isset($_GET['course_id']) && $_GET['course_id'] != ''): 
+ ?>
             <!-- Category Tabs -->
             <div class="tabs">
                 <?php 
